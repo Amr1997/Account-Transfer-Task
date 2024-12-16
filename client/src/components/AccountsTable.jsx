@@ -3,7 +3,7 @@ import { Table, Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axiosInstance";
 
-const AccountsTable = () => {
+const AccountsTable = ({ refetch }) => {
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const AccountsTable = () => {
     };
 
     fetchAccounts();
-  }, []);
+  }, [refetch]); // Refetch data whenever `refetch` changes
 
   const columns = [
     {

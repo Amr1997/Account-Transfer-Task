@@ -3,7 +3,7 @@ import { Upload, Button, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import axiosInstance from "../axiosInstance";
 
-const FileUploadForm = () => {
+const FileUploadForm = ({ onUploadSuccess }) => {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
 
@@ -36,6 +36,7 @@ const FileUploadForm = () => {
         },
       });
       message.success(response.data.message || "File uploaded successfully.");
+      onUploadSuccess(); // Call the callback to trigger refetch in AccountsTable
     } catch (error) {
       message.error(error.response?.data?.error || "Failed to upload file.");
     } finally {
